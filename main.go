@@ -18,8 +18,8 @@ func main() {
 
 	// Define the input and output file paths
 	// The input CSV file and output JSON Lines file are both located in ~/Desktop/MSDS431
-	inputFilePath := "~/Desktop/MSDS431/housesInput.csv"
-	outputFilePath := "~/Desktop/MSDS431/housesOutput.jl"
+	inputFilePath := "~/Desktop/Go_Command/Go_Command_Line/housesInput.csv"
+	outputFilePath := "~/Desktop/Go_Command/Go_Command_Line/housesOutput.jl"
 
 	// Expand the tilde (~) in the file paths to the full home directory path
 	inputFilePath = os.ExpandEnv(inputFilePath)
