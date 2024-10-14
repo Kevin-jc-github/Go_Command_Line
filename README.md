@@ -37,9 +37,9 @@ Ensure that your CSV file (`housesInput.csv`) is placed in the root of the proje
 Example CSV (`housesInput.csv`):
 
 ```csv
-value	income	age	rooms	bedrooms	pop	   hh
-452600	8.3252	41	 880	  129	    322	   126
-358500	8.3014	21	 7099	  1106	    2401   1138
+value,income,age,rooms,bedrooms,pop,hh
+452600,8.3252,41,880,129,322,126
+358500,8.3014,21,7099,1106,2401,1138
 ```
 
 ### Step 3: Build the Program
@@ -49,6 +49,7 @@ To compile the program, use the following command to build it:
 ```sh
 go build -o csvtojl
 ```
+
 ### Step 4: Create an Executable File for Your OS
 
 For Windows: To create a .exe file that can be executed on Windows, use the following command:
@@ -91,10 +92,52 @@ The output JSON Lines file (`housesOutput.jl`) will contain each row of data in 
 {"age":"21","bedrooms":"1106","hh":"1138","income":"8.3014","pop":"2401","rooms":"7099","value":"358500"}
 ```
 
-## Testing the Application
+## Unit Test
 
-1. **Test Input Validity**: Use a CSV file with at least one header and one data row.
-2. **Error Handling**: The application will output errors if the input CSV file is not formatted correctly, if the number of columns in data rows does not match the headers, or if there are file read/write issues.
+
+## Performance and Profiling
+
+This application also includes CPU profiling, memory monitoring, and performance benchmarking to ensure efficient operation and help identify bottlenecks.
+
+### Features Added for Profiling and Monitoring
+
+1. **CPU Profiling**: The program uses Go's `pprof` package to generate a CPU profile (`cpu.prof`). This helps in analyzing how the CPU is used during the execution of the program, which is useful for identifying performance issues.
+
+2. **Memory Monitoring**: Memory usage statistics are captured before and after processing the CSV file using `runtime.MemStats`. This allows monitoring of memory allocation and helps ensure that memory is being used efficiently throughout the program.
+
+3. **Performance Timing**: The program records the start and end times of the conversion process to calculate the total duration. This provides a performance benchmark, indicating how long it takes to convert the CSV to JSON Lines format.
+
+4. **Program Logging**: Logs are generated throughout the program to provide feedback on the progress and potential errors. These logs can be useful for debugging and understanding the program flow.
+
+### How to Use Profiling
+
+- **CPU Profiling**: When running the program, it generates a file called `cpu.prof` in the current directory. You can use the following command to analyze the profile:
+
+  ```sh
+  go tool pprof cpu.prof
+  ```
+
+  This will help you visualize the CPU usage and identify any functions that consume excessive CPU resources.
+
+- **Memory Monitoring**: Memory statistics are logged before and after the CSV processing. These logs will indicate the amount of memory allocated and help track memory usage trends.
+
+### Example Performance Logs
+
+- **Memory Usage**:
+  ```
+  2024/10/13 22:10:03 Initial memory usage: Alloc = 4721 KB
+  2024/10/13 22:10:03 CSV to JSON Lines conversion completed in 69.764041ms
+  2024/10/13 22:10:03 Final memory usage: Alloc = 8738 KB
+  ```
+
+- **Execution Time**:
+  ```
+  CSV to JSON Lines conversion completed in 69.764041ms.
+  ```
+  
+![alt text](image-1.png)
+
+These features were added to fulfill the requirement of monitoring processing requirements, generating program logs and profiles, and ensuring the program's efficiency. Future additions may include unit tests for critical components and a Monte Carlo performance benchmark if required.
 
 ### Example Scenarios:
 
@@ -104,5 +147,4 @@ The output JSON Lines file (`housesOutput.jl`) will contain each row of data in 
 ## Conclusion
 
 This application is designed to simplify the process of converting structured CSV data to JSON Lines format, making it easy to handle large datasets for downstream applications. By following the steps above, you should be able to successfully run and test this command-line utility. If you encounter any issues or have questions, feel free to consult Go documentation or ask for help.
-
 
