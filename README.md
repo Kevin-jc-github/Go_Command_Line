@@ -49,10 +49,21 @@ To compile the program, use the following command to build it:
 ```sh
 go build -o csvtojl
 ```
+### Step 4: Create an Executable File for Your OS
+
+For Windows: To create a .exe file that can be executed on Windows, use the following command:
+
+GOOS=windows GOARCH=amd64 go build -o csvtojl.exe
+
+For MacOS: To create an .app file for MacOS, use the following command:
+
+GOOS=darwin GOARCH=amd64 go build -o csvtojl.app
+
+These commands set the target operating system and architecture, allowing you to build platform-specific executable files.
 
 This command creates an executable file named `csvtojl` in the current directory.
 
-### Step 4: Run the Application
+### Step 5: Run the Application
 
 To run the program and convert a CSV file to a JSON Lines file, use the following command:
 
