@@ -52,13 +52,13 @@ go build -o csvtojl
 ### Step 4: Create an Executable File for Your OS
 
 For Windows: To create a .exe file that can be executed on Windows, use the following command:
-
+```sh
 GOOS=windows GOARCH=amd64 go build -o csvtojl.exe
-
+```
 For MacOS: To create an .app file for MacOS, use the following command:
-
+```sh
 GOOS=darwin GOARCH=amd64 go build -o csvtojl.app
-
+```
 These commands set the target operating system and architecture, allowing you to build platform-specific executable files.
 
 This command creates an executable file named `csvtojl` in the current directory.
